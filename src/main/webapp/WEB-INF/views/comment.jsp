@@ -15,13 +15,13 @@
 	         $('#recommend').show();
 	         
 	         $.ajax({
-	         	url: "requestObject", type: "get", dataType:"json", 
+	         	url: "commentPro", type: "get", dataType:"json", 
 	         	success: function(commentData){
 	         		var str = "";
 	         		let list = commentData.datas;
 	         		$(list).each(function(idx,arr){
 	         			str += "<div>";
-	         			str += arr["comment"];
+	         			str += arr.comment;
 	         			str += "</div>";
 	         		});
 	         		

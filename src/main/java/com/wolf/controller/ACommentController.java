@@ -27,7 +27,7 @@ public class ACommentController {
 		return "comment";
 	}
 	
-	@RequestMapping(value="/requestObject")
+	@RequestMapping(value="/commentPro")
     @ResponseBody
     public Map<String,Object> commmentget() {		
 		List<Map<String,String>> datalist = new ArrayList<Map<String,String>>();
