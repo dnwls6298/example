@@ -10,6 +10,7 @@ import javax.inject.Inject;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.wolf.domain.ACommentDTO;
@@ -29,8 +30,10 @@ public class ACommentController {
 	
 	@RequestMapping(value="/commentPro")
     @ResponseBody
-    public Map<String,Object> commmentget() {		
+    public Map<String,Object> commmentget(@RequestParam Integer page) {		
 		List<Map<String,String>> datalist = new ArrayList<Map<String,String>>();
+		
+		System.out.println(page);
 		
 		Map<String,String> data = null;
 		
@@ -48,5 +51,12 @@ public class ACommentController {
 		
         return ACommmentDatas;
     }
+	
+	@RequestMapping(value="/commentCount")
+	@ResponseBody
+	public String commentcount() {
+		System.out.println("컨트롤러 실행함");
+		return "5";
+	}
 
 }
