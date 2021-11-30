@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.wolf.dao.ACommentDAO;
 import com.wolf.domain.ACommentDTO;
+import com.wolf.domain.ACommentPageDTO;
 
 @Service
 public class ACommentServiceImpl implements ACommentService{
@@ -16,8 +17,18 @@ public class ACommentServiceImpl implements ACommentService{
 	private ACommentDAO ACommentDAO;
 
 	@Override
-	public List<ACommentDTO> getcomments() {
-		return ACommentDAO.getcomments();
+	public List<ACommentDTO> getcomments(ACommentPageDTO PageDTO) {
+		return ACommentDAO.getcomments(PageDTO);
+	}
+
+	@Override
+	public int getRecommentCount() {
+		return ACommentDAO.getRecommentCount();
+	}
+
+	@Override
+	public void insertRecomment(ACommentDTO ACommentdto) {
+		ACommentDAO.insertRecomment(ACommentdto);
 	}
 
 }

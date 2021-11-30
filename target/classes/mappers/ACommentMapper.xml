@@ -4,7 +4,17 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
 <mapper namespace="com.team.mapper.ACommentMapper">
+
 	<select id="getcomment" resultType="com.wolf.domain.ACommentDTO">
-		select * from comments
+		select * from comment where recomment is null limit #{page} , #{pagesize}
 	</select>
+	
+	<select id="getcommentCount" resultType="_int">
+		select count(comment) from comment where recomment is null
+	</select>
+	
+	<insert id="insertcomment">
+		insert into comment(comment,commentNum) values(#{comment} ,(select IFNULL(MAX(commentNum),0)+1 from comment C));
+	</insert>
+	
 </mapper>

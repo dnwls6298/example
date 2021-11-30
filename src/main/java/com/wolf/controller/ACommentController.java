@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.wolf.domain.ACommentDTO;
+import com.wolf.domain.ACommentPageDTO;
 import com.wolf.service.ACommentService;
 
 @Controller
@@ -33,15 +34,16 @@ public class ACommentController {
     public Map<String,Object> commmentget(@RequestParam Integer page) {		
 		List<Map<String,String>> datalist = new ArrayList<Map<String,String>>();
 		
-		System.out.println(page);
-		
 		Map<String,String> data = null;
 		
-		List<ACommentDTO> ACommentdto = ACommentService.getcomments();
+		ACommentPageDTO PageDTO = new ACommentPageDTO();
+		PageDTO.setPage((page-1)*3); PageDTO.setPagesize(3);
+		List<ACommentDTO> ACommentdto = ACommentService.getcomments(PageDTO);
 		
 		for(ACommentDTO s : ACommentdto) {
 			data = new HashMap<String, String>();
 			data.put("comment",s.getComment());
+			data.put("commentNum",Integer.toString(s.getCommentNum()));
 			
 			datalist.add(data);
 		}
@@ -54,9 +56,13 @@ public class ACommentController {
 	
 	@RequestMapping(value="/commentCount")
 	@ResponseBody
-	public String commentcount() {
-		System.out.println("컨트롤러 실행함");
-		return "5";
+	public String recommentcount() {
+		return Integer.toString(ACommentService.getRecommentCount());
+	}
+	
+	@RequestMapping(value="/recommentSerialize")
+	public void recommentSerialize(ACommentDTO ACommentdto) {
+		ACommentService.insertRecomment(ACommentdto);
 	}
 
 }
