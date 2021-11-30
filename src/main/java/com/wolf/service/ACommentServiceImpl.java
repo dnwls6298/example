@@ -31,4 +31,9 @@ public class ACommentServiceImpl implements ACommentService{
 		ACommentDAO.insertRecomment(ACommentdto);
 	}
 
+	@Override
+	public List<ACommentDTO> getrecomments(ACommentPageDTO PageDTO) {
+		return ACommentDAO.getrecomments(PageDTO);
+	}
+
 }

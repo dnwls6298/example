@@ -65,4 +65,27 @@ public class ACommentController {
 		ACommentService.insertRecomment(ACommentdto);
 	}
 
+	@RequestMapping(value="/recommentPro")
+	@ResponseBody
+    public Map<String,Object> recommmentget(@RequestParam Integer commentNum) {		
+		List<Map<String,String>> datalist = new ArrayList<Map<String,String>>();
+		
+		Map<String,String> data = null;
+		
+		ACommentPageDTO PageDTO = new ACommentPageDTO();
+		PageDTO.setPage((commentNum-1)*3); PageDTO.setPagesize(3);
+		List<ACommentDTO> ACommentdto = ACommentService.getcomments(PageDTO);
+		
+		for(ACommentDTO s : ACommentdto) {
+			data = new HashMap<String, String>();
+			data.put("comment",s.getComment());
+			
+			datalist.add(data);
+		}
+		
+		Map<String , Object> ACommmentDatas = new HashMap<String, Object>();
+		ACommmentDatas.put("datas", datalist);
+		
+        return ACommmentDatas;
+    }
 }

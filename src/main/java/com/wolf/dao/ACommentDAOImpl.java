@@ -32,5 +32,10 @@ public class ACommentDAOImpl implements ACommentDAO{
 	public void insertRecomment(ACommentDTO ACommentdto) {
 		sqlSession.insert(namespace + ".insertcomment", ACommentdto);
 	}
+
+	@Override
+	public List<ACommentDTO> getrecomments(ACommentPageDTO PageDTO) {
+		return sqlSession.selectList(namespace + ".getrecomment" , PageDTO);
+	}
 	
 }

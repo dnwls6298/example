@@ -15,17 +15,14 @@
 	pageCreate(1); // 1번째 칸의 페이지 함수 호출
 		
 		
-	   $('#recommend_bt').click(function() { //답글 버튼을 눌렀을 때
+/* 	   $('#recommend_bt').click(function() {
 	      if($('#recomments').css("display") == "none"){
 	         $('#recomments').show();
-	         
-	         pagebt(1); // 1페이지 눌렀을 때 함수 호출
-	         pageCreate(1); // 1번째 칸의 페이지 함수 호출
-	         
+	   
 	      }else if($('#recomments').css("display") != "none"){
 	         $('#recomments').hide();
 	      }
-	   });
+	   }); */
 	   
 	   $('#submit_comment').click(function() {
 			$.ajax({
@@ -109,8 +106,12 @@
          		$(list).each(function(idx,arr){
          			str += "<div>";
          			str += arr.comment;
-          			str += arr.commentNum;
          			str += "</div>";
+         			str += "<input type=button onclick=recommentbt(";
+         			str += arr.commentNum;		
+         			str += ") value=답글><div id=recomment";
+        			str += arr.commentNum;
+         			str += " ></div>";
          		});
          		
 				$("#comments").html(str);
@@ -121,7 +122,32 @@
 			}
 		});
 	}
-	
+ 	
+	function recommentbt(a,b){ //대댓글을 호출하는 메소드
+		var commentNum = a;
+		var page = b;
+		$.ajax({
+			url:"recommentPro", type:"post", dataType:"json", data:{"page":page ,"commentNum":commentNum},
+			success: function(commentData){
+				var str = "";
+				let list = commentData.datas;
+				
+				$(list).each(function(idx,arr){
+         			str += "<div>";
+         			str += arr.recomment;
+         			str += "</div>";
+				});
+				
+			$("#recomment").html(str);
+			
+			},
+			error:function(request,status,error){
+				alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+			}
+			
+		});
+	}
+
 	
 </script>
 <style type="text/css">
@@ -144,20 +170,9 @@ textarea {
 </form>
 
 
-<!--  댓글 한칸의 div -->
-
-
-<!-- <input type="button" class="recommend_bt" id="recommend_bt" onclick="recommend_view" value="답글"/><br> -->
-
 <div id = "comments"></div>
-<div id = "recomment"></div>
 <div id = "pageNumber"></div>
 	
-	
-	
-	
-
-<!--  댓글 한칸의 div -->
 
 </body>
 </html>

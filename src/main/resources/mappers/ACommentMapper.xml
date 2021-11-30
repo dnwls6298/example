@@ -17,4 +17,8 @@
 		insert into comment(comment,commentNum) values(#{comment} ,(select IFNULL(MAX(commentNum),0)+1 from comment C));
 	</insert>
 	
+	<select id="getrecomment" resultType="com.wolf.domain.ACommentDTO">
+		select * from comment where recomment =	#{commentNum} limit #{page} , #{pagesize}
+	</select>
+	
 </mapper>

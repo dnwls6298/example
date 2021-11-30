@@ -11,4 +11,6 @@ public interface ACommentService {
 	public int getRecommentCount();
 	
 	public void insertRecomment(ACommentDTO ACommentdto);
+	
+	public List<ACommentDTO> getrecomments(ACommentPageDTO PageDTO);
 }
