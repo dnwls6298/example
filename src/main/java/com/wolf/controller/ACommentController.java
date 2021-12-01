@@ -56,29 +56,29 @@ public class ACommentController {
 	
 	@RequestMapping(value="/commentCount")
 	@ResponseBody
-	public String recommentcount() {
-		return Integer.toString(ACommentService.getRecommentCount());
+	public String commentcount() {
+		return Integer.toString(ACommentService.getcommentCount());
 	}
 	
-	@RequestMapping(value="/recommentSerialize")
-	public void recommentSerialize(ACommentDTO ACommentdto) {
-		ACommentService.insertRecomment(ACommentdto);
+	@RequestMapping(value="/commentSerialize")
+	public void commentSerialize(ACommentDTO ACommentdto) {
+		ACommentService.insertcomment(ACommentdto);
 	}
 
 	@RequestMapping(value="/recommentPro")
 	@ResponseBody
-    public Map<String,Object> recommmentget(@RequestParam Integer commentNum) {		
+    public Map<String,Object> recommmentget(@RequestParam Integer commentNum , @RequestParam Integer page) {		
 		List<Map<String,String>> datalist = new ArrayList<Map<String,String>>();
 		
 		Map<String,String> data = null;
 		
 		ACommentPageDTO PageDTO = new ACommentPageDTO();
-		PageDTO.setPage((commentNum-1)*3); PageDTO.setPagesize(3);
-		List<ACommentDTO> ACommentdto = ACommentService.getcomments(PageDTO);
+		PageDTO.setPage((page-1)*3); PageDTO.setPagesize(3); PageDTO.setCommentNum(commentNum);
+		List<ACommentDTO> ACommentdto = ACommentService.getrecomments(PageDTO);
 		
 		for(ACommentDTO s : ACommentdto) {
 			data = new HashMap<String, String>();
-			data.put("comment",s.getComment());
+			data.put("recomment",s.getComment());
 			
 			datalist.add(data);
 		}
@@ -88,4 +88,17 @@ public class ACommentController {
 		
         return ACommmentDatas;
     }
+	
+	@RequestMapping(value="/recommentCount")
+	@ResponseBody
+	public String recommentcount(@RequestParam Integer commentNum) {
+		ACommentPageDTO PageDTO = new ACommentPageDTO();
+		PageDTO.setCommentNum(commentNum);
+		return Integer.toString(ACommentService.getrecommentCount(PageDTO));
+	}
+	
+	@RequestMapping(value="/recommentSerialize")
+	public void recommentSerialize(ACommentDTO ACommentdto) {
+		ACommentService.insertRecomment(ACommentdto);
+	}
 }

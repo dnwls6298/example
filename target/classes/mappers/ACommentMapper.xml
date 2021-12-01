@@ -21,4 +21,12 @@
 		select * from comment where recomment =	#{commentNum} limit #{page} , #{pagesize}
 	</select>
 	
+	<select id="getrecommentCount" resultType="_int">
+		select count(comment) from comment where recomment = #{commentNum}
+	</select>
+	
+	<insert id="insertrecomment">
+		insert into comment(recomment,comment,commentNum) values(#{recomment} ,#{comment} ,(select IFNULL(MAX(commentNum),0)+1 from comment C));
+	</insert>
+	
 </mapper>

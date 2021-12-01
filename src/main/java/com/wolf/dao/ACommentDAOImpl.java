@@ -24,18 +24,28 @@ public class ACommentDAOImpl implements ACommentDAO{
 	}
 
 	@Override
-	public int getRecommentCount() {
+	public int getcommentCount() {
 		return sqlSession.selectOne(namespace + ".getcommentCount");
 	}
 
 	@Override
-	public void insertRecomment(ACommentDTO ACommentdto) {
+	public void insertcomment(ACommentDTO ACommentdto) {
 		sqlSession.insert(namespace + ".insertcomment", ACommentdto);
 	}
 
 	@Override
 	public List<ACommentDTO> getrecomments(ACommentPageDTO PageDTO) {
 		return sqlSession.selectList(namespace + ".getrecomment" , PageDTO);
+	}
+
+	@Override
+	public int getrecommentCount(ACommentPageDTO PageDTO) {
+		return sqlSession.selectOne(namespace + ".getrecommentCount" , PageDTO);
+	}
+
+	@Override
+	public void insertRecomment(ACommentDTO ACommentdto) {
+		sqlSession.insert(namespace + ".insertrecomment", ACommentdto);
 	}
 	
 }

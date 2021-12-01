@@ -1,0 +1,45 @@
+/** * html 리셋 css 입니다. */
+* { margin: 0; padding: 0; }
+
+.innerContent { max-width: 1200px; margin: 0 auto; }
+.flex { display: flex; justify-content: space-between; align-items: center; align-content: center; }
+.clear { clear: both; }
+html { font-size: 10px }
+html, body, p, h1, h2, h3, h4, h5, h6, ul, ol, li, dl, dt, dd, table, th, td, form, fieldset, legend, input, textarea, button, select, div, figure, article, header, nav, footer, section, button, span { margin: 0; padding: 0; -webkit-box-sizing: border-box; box-sizing: border-box; word-break: keep-all; word-wrap: break-word; white-space: normal;
+}
+body, input, textarea, select, button, table, th, td { font-family: Noto Sans KR, "notokr", "Open Sans", "Helvetica Neue", sans-serif; color: #5a5f64; font-weight: 400; font-size: 1.5rem; line-height: 1.53; letter-spacing: -0.03em; box-sizing: border-box; }
+h1, h2, h3, h4, h5, h6 { font-weight: 400; font-size: 1.5rem; line-height: 1.5; letter-spacing: -0.05em }
+img, fieldset, iframe { border: 0; vertical-align: middle; }
+textarea { -webkit-border-radius: 0; resize: none; white-space: pre-wrap }
+textarea:focus { outline: 0 }
+ul, ol { list-style: none }
+ul:after, ol:after { content: ''; display: block; clear: both }
+em, address { font-style: normal }
+input, select { vertical-align: middle }
+table { width: 100%; border-collapse: separate; border-spacing: 0 }
+
+ul, ol, li { list-style: none; }
+ul:after, ol:after { content: ''; display: block; clear: both }
+address, caption, cite, code, dfn, em, var { font-style: normal; }
+table { width: 100%; border-collapse: separate; border-spacing: 0 }
+hr, legend { display: none }
+caption { visibility: hidden; overflow: hidden; position: static; top: 0; left: 0; width: 0; height: 0; font-size: 0; line-height: 0 }
+fieldset, abbr, acronym { border: 0; }
+
+a { color: #717171; text-decoration: none; /*outline:none;*/ }
+dd { display: block; }
+pre { overflow: auto; }
+label { cursor: pointer; vertical-align: top; }
+input, select { outline: none; vertical-align: top; color: #717171; }
+button { text-align: left; -webkit-box-sizing: border-box; box-sizing: border-box; border: none; background: none; cursor: pointer }
+button::-moz-focus-inner { padding: 0; border: 0 }
+::-webkit-input-placeholder { color: #828388; font-size: 1.5rem; font-weight: 400; font-family: Noto Sans KR, "notokr", "Open Sans", "Helvetica Neue", sans-serif }
+:-moz-placeholder { color: #828388; opacity: 1; }
+::-moz-placeholder { color: #828388; opacity: 1; }
+:-ms-input-placeholder { color: #828388; font-size: 1.5rem; font-weight: 400; font-family: Noto Sans KR, "notokr", "Open Sans", "Helvetica Neue", sans-serif }
+::-ms-input-placeholder { color: #828388; font-size: 1.5rem; font-weight: 400; font-family: Noto Sans KR, "notokr", "Open Sans", "Helvetica Neue", sans-serif }
+::placeholder { color: #aeb4c6; font-size: 1.5rem; font-weight: 400; font-family: Noto Sans KR, "notokr", "Open Sans", "Helvetica Neue", sans-serif }
+textarea::-webkit-input-placeholder { color: #828388; font-size: 1.5rem; font-weight: 400; font-family: Noto Sans KR, "notokr", "Open Sans", "Helvetica Neue", sans-serif }
+textarea:-ms-input-placeholder { color: #828388; font-size: 1.5rem; font-weight: 400; font-family: Noto Sans KR, "notokr", "Open Sans", "Helvetica Neue", sans-serif }
+textarea::-ms-input-placeholder { color: #828388; font-size: 1.5rem; font-weight: 400; font-family: Noto Sans KR, "notokr", "Open Sans", "Helvetica Neue", sans-serif }
+textarea::placeholder { color: #828388; font-size: 1.5rem; font-weight: 400; font-family: Noto Sans KR, "notokr", "Open Sans", "Helvetica Neue", sans-serif }

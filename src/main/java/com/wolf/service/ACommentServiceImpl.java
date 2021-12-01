@@ -22,18 +22,28 @@ public class ACommentServiceImpl implements ACommentService{
 	}
 
 	@Override
-	public int getRecommentCount() {
-		return ACommentDAO.getRecommentCount();
+	public int getcommentCount() {
+		return ACommentDAO.getcommentCount();
 	}
 
 	@Override
-	public void insertRecomment(ACommentDTO ACommentdto) {
-		ACommentDAO.insertRecomment(ACommentdto);
+	public void insertcomment(ACommentDTO ACommentdto) {
+		ACommentDAO.insertcomment(ACommentdto);
 	}
 
 	@Override
 	public List<ACommentDTO> getrecomments(ACommentPageDTO PageDTO) {
 		return ACommentDAO.getrecomments(PageDTO);
+	}
+
+	@Override
+	public int getrecommentCount(ACommentPageDTO PageDTO) {
+		return ACommentDAO.getrecommentCount(PageDTO);
+	}
+
+	@Override
+	public void insertRecomment(ACommentDTO ACommentdto) {
+		ACommentDAO.insertRecomment(ACommentdto);
 	}
 
 }
