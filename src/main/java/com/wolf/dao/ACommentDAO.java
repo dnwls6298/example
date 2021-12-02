@@ -17,4 +17,6 @@ public interface ACommentDAO {
 	public int getrecommentCount(ACommentPageDTO PageDTO);
 	
 	public void insertRecomment(ACommentDTO ACommentdto);
+	
+	public void insertPiture(ACommentDTO ACommentdto);
 }

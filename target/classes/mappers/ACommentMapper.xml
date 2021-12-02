@@ -6,7 +6,7 @@
 <mapper namespace="com.team.mapper.ACommentMapper">
 
 	<select id="getcomment" resultType="com.wolf.domain.ACommentDTO">
-		select * from comment where recomment is null limit #{page} , #{pagesize}
+		select * from comment where recomment is null order by commentNum desc limit #{page} , #{pagesize}
 	</select>
 	
 	<select id="getcommentCount" resultType="_int">
@@ -14,7 +14,7 @@
 	</select>
 	
 	<insert id="insertcomment">
-		insert into comment(comment,commentNum) values(#{comment} ,(select IFNULL(MAX(commentNum),0)+1 from comment C));
+		insert into comment(memId , star,comment,commentNum,commentTime) values(#{memId} ,#{star} ,#{comment} ,(select IFNULL(MAX(commentNum),0)+1 from comment C) , #{date})
 	</insert>
 	
 	<select id="getrecomment" resultType="com.wolf.domain.ACommentDTO">
@@ -26,7 +26,11 @@
 	</select>
 	
 	<insert id="insertrecomment">
-		insert into comment(recomment,comment,commentNum) values(#{recomment} ,#{comment} ,(select IFNULL(MAX(commentNum),0)+1 from comment C));
+		insert into comment(recomment,comment,commentNum,commentTime) values(#{recomment} ,#{comment} ,(select IFNULL(MAX(commentNum),0)+1 from comment C))
 	</insert>
+	
+	<update id="insertpicture">
+		update comment set picture = #{picture} where = #{commentNum}
+	</update>
 	
 </mapper>

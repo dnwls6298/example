@@ -1,5 +1,6 @@
 package com.wolf.service;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -28,6 +29,10 @@ public class ACommentServiceImpl implements ACommentService{
 
 	@Override
 	public void insertcomment(ACommentDTO ACommentdto) {
+		
+		Timestamp date = new Timestamp(System.currentTimeMillis());
+		ACommentdto.setDate(date);
+		
 		ACommentDAO.insertcomment(ACommentdto);
 	}
 
@@ -44,6 +49,12 @@ public class ACommentServiceImpl implements ACommentService{
 	@Override
 	public void insertRecomment(ACommentDTO ACommentdto) {
 		ACommentDAO.insertRecomment(ACommentdto);
+	}
+
+	@Override
+	public void insertPiture(ACommentDTO ACommentdto) {
+		ACommentDAO.insertPiture(ACommentdto);
+		
 	}
 
 }

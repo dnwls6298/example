@@ -47,5 +47,11 @@ public class ACommentDAOImpl implements ACommentDAO{
 	public void insertRecomment(ACommentDTO ACommentdto) {
 		sqlSession.insert(namespace + ".insertrecomment", ACommentdto);
 	}
+
+	@Override
+	public void insertPiture(ACommentDTO ACommentdto) {
+		sqlSession.insert(namespace + ".insertpicture", ACommentdto);
+		
+	}
 	
 }

@@ -27,5 +27,12 @@
 	<context:component-scan base-package="com.wolf.service" />
 	
 	
+	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<beans:property name="maxUploadSize" value="104857600"></beans:property>
+	</beans:bean>
+	
+	<beans:bean id="uploadPath" class="java.lang.String">
+		<beans:constructor-arg value="C:\Users\ITWILL\git\example\src\main\webapp\resources\images\comment_picture"></beans:constructor-arg>
+	</beans:bean>
 	
 </beans:beans>

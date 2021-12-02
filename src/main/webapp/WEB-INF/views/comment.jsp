@@ -10,65 +10,96 @@
 <script type="text/javascript">
 
 	$(function() {//첫 페이지 로딩시
+		var id = '<%=(String)session.getAttribute("id")%>';
+		alert(id);
+		if(id == "null"){
+			$('#comment_subform').hide();
+			$('#commentPicture_subform').hide();
+			$('.recomment_subform').hide();
+			$('#starbox').hide();
+		}
 	
+		
 		pagebt(1); // 1페이지 눌렀을 때 함수 호출
 		pageCreate(1); // 1번째 칸의 페이지 함수 호출
-			
-		$('#submit_comment').click(function() { //댓글 작성버튼을 눌렀을 때
-			$.ajax({
-				url:"commentSerialize" , type:"post" , data:$("#comment_subform").serialize(),
-				success: function(data){},
-				error:function(request,status,error){
-		           	alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-				}
-			});
-		});
 		
+		//별점 
 		$('#star1').hover(function() {
-			$('#star1').css('background-image', 'url("/resources/image/yellowStar.jpg")');
-			$('#star2').css('background-image', 'url("/resources/image/grayStar.jpg")');
-			$('#star3').css('background-image', 'url("/resources/image/grayStar.jpg")');
-			$('#star4').css('background-image', 'url("/resources/image/grayStar.jpg")');
-			$('#star5').css('background-image', 'url("/resources/image/grayStar.jpg")');
+			$('#star1').css('background-image', 'url("${pageContext.request.contextPath}/resources/images/yellowStar.png")');
+			$('#star2').css('background-image', 'url("${pageContext.request.contextPath}/resources/images/grayStar.png")');
+			$('#star3').css('background-image', 'url("${pageContext.request.contextPath}/resources/images/grayStar.png")');
+			$('#star4').css('background-image', 'url("${pageContext.request.contextPath}/resources/images/grayStar.png")');
+			$('#star5').css('background-image', 'url("${pageContext.request.contextPath}/resources/images/grayStar.png")');
 			$('#star').val(1);
 		});
 		
 		$('#star2').hover(function() {
-			$('#star1').css("background-image", 'url("/resources/image/yellowStar.jpg")');
-			$('#star2').css("background-image", 'url("/resources/image/yellowStar.jpg")');
-			$('#star3').css("background-image", 'url("/resources/image/grayStar.jpg")');
-			$('#star4').css("background-image", 'url("/resources/image/grayStar.jpg")');
-			$('#star5').css("background-image", 'url("/resources/image/grayStar.jpg")');
+			$('#star1').css("background-image", 'url("${pageContext.request.contextPath}/resources/images/yellowStar.png")');
+			$('#star2').css("background-image", 'url("${pageContext.request.contextPath}/resources/images/yellowStar.png")');
+			$('#star3').css("background-image", 'url("${pageContext.request.contextPath}/resources/images/grayStar.png")');
+			$('#star4').css("background-image", 'url("${pageContext.request.contextPath}/resources/images/grayStar.png")');
+			$('#star5').css("background-image", 'url("${pageContext.request.contextPath}/resources/images/grayStar.png")');
 			$('#star').val(2);
 		});
 		
 		$('#star3').hover(function() {
-			$('#star1').css("background-image", 'url("/resources/image/yellowStar.jpg")');
-			$('#star2').css("background-image", 'url("/resources/image/yellowStar.jpg")');
-			$('#star3').css("background-image", 'url("/resources/image/yellowStar.jpg")');
-			$('#star4').css("background-image", 'url("/resources/image/grayStar.jpg")');
-			$('#star5').css("background-image", 'url("/resources/image/grayStar.jpg")');
+			$('#star1').css("background-image", 'url("${pageContext.request.contextPath}/resources/images/yellowStar.png")');
+			$('#star2').css("background-image", 'url("${pageContext.request.contextPath}/resources/images/yellowStar.png")');
+			$('#star3').css("background-image", 'url("${pageContext.request.contextPath}/resources/images/yellowStar.png")');
+			$('#star4').css("background-image", 'url("${pageContext.request.contextPath}/resources/images/grayStar.png")');
+			$('#star5').css("background-image", 'url("${pageContext.request.contextPath}/resources/images/grayStar.png")');
 			$('#star').val(3);
 		});
 		
 		$('#star4').hover(function() {
-			$('#star1').css("background-image", 'url("/resources/image/yellowStar.jpg")');
-			$('#star2').css("background-image", 'url("/resources/image/yellowStar.jpg")');
-			$('#star3').css("background-image", 'url("/resources/image/yellowStar.jpg")');
-			$('#star4').css("background-image", 'url("/resources/image/yellowStar.jpg")');
-			$('#star5').css("background-image", 'url("/resources/image/grayStar.jpg")');
+			$('#star1').css("background-image", 'url("${pageContext.request.contextPath}/resources/images/yellowStar.png")');
+			$('#star2').css("background-image", 'url("${pageContext.request.contextPath}/resources/images/yellowStar.png")');
+			$('#star3').css("background-image", 'url("${pageContext.request.contextPath}/resources/images/yellowStar.png")');
+			$('#star4').css("background-image", 'url("${pageContext.request.contextPath}/resources/images/yellowStar.png")');
+			$('#star5').css("background-image", 'url("${pageContext.request.contextPath}/resources/images/grayStar.png")');
 			$('#star').val(4);
 		});
 		
 		$('#star5').hover(function() {
-			$('#star1').css("background-image", 'url("/resources/image/yellowStar.jpg")');
-			$('#star2').css("background-image", 'url("/resources/image/yellowStar.jpg")');
-			$('#star3').css("background-image", 'url("/resources/image/yellowStar.jpg")');
-			$('#star4').css("background-image", 'url("/resources/image/yellowStar.jpg")');
-			$('#star5').css("background-image", 'url("/resources/image/yellowStar.jpg")');
+			$('#star1').css("background-image", 'url("${pageContext.request.contextPath}/resources/images/yellowStar.png")');
+			$('#star2').css("background-image", 'url("${pageContext.request.contextPath}/resources/images/yellowStar.png")');
+			$('#star3').css("background-image", 'url("${pageContext.request.contextPath}/resources/images/yellowStar.png")');
+			$('#star4').css("background-image", 'url("${pageContext.request.contextPath}/resources/images/yellowStar.png")');
+			$('#star5').css("background-image", 'url("${pageContext.request.contextPath}/resources/images/yellowStar.png")');
 			$('#star').val(5);
 		});
 	});
+
+	function insertcomment(){ //댓글 작성버튼을 눌렀을 때
+		if(checkNull($('#comment').val())){
+			alert("댓글을 입력해 주세요");
+		}else if($('#star').val()=="0"){
+			alert("별점을 선택해 주세요");
+		}else{
+			$.ajax({
+				url:"commentSerialize", type:"post", data:$("#comment_subform").serialize(), async: false,
+
+				success: function(){},
+				error:function(request,status,error){
+		           	//alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+				}
+			});
+		}
+	
+		if($('#picture')!=null){
+			var form = $("#commentPicture_subform")[0];
+			var formData = new FormData(form);
+
+			$.ajax({
+				url:"upload", type:"post", data:formData, enctype: "multipart/form-data", async: false,
+				processData: false,contentType: false, cache: false, timeout: 300000,
+				success: function(){},
+				error:function(request,status,error){
+		           	//alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+				}
+			});
+		}
+	}
 	
 	function insertrecomment(id){ //답글 작성 버튼을 눌렀을 때
 		var str="#";
@@ -79,9 +110,17 @@
 			url:"recommentSerialize" , type:"post" , data:$(str).serialize(),
 			success: function(data){},
 			error:function(request,status,error){
-				alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+				//alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
 			} 
 		});
+	}
+	
+	function checkNull(input){
+		if(input== null||input.replace(/ /gi,"")==""){
+			return true;
+		}else{
+			return false;
+		}
 	}
 	
 	
@@ -152,9 +191,17 @@
          		var str = "";
          		let list = commentData.datas;
          		$(list).each(function(idx,arr){
+         			str += "<span class=commentstar>";
+         			str += arr.star;
+         			str += "</span>";
+ //        			str += arr.commentTime;
          			str += "<div>";
+         			str += arr.memid;
+         			str += "</div><div>";
          			str += arr.comment;
-         			str += "</div><input type=button onclick=recommentbt(";
+         			str += "</div><img src=${pageContext.request.contextPath}/resources/images/comment_picture/";
+         			str += arr.picture;
+         			str += "><input type=button onclick=recommentbt(";
          			str += arr.commentNum;		
          			str += ") value=답글";
          			str += recommentcount(arr.commentNum);
@@ -162,17 +209,18 @@
          			str += arr.commentNum;
          			str += " style=display:none;><div id=recomment";
         			str += arr.commentNum;
-         			str += "></div><div id=RepageNumber"
+         			str += "></div><div id=RepageNumber";
          			str += arr.commentNum;
-         			str += "></div><form id=recomment_subform";
+         			str += "></div><form class=recomment_subform id=recomment_subform";
          			str += arr.commentNum;
          			str += "><textarea name=comment></textarea>";
+         			str += "<input name=memId type=text value=<%=(String)session.getAttribute("id")%> style=display:none;>";
          			str += "<input name=recomment type=text value=";
          			str += arr.commentNum;
          			str += " style=display:none;>";
          			str += "<button id=submit_recomment";
          			str += arr.commentNum;
-         			str += " onclick=insertrecomment(this)>답글 작성</button></form></div>";
+         			str += " onclick=insertrecomment(this)>답글 작성</button></form></div><hr>";
          		});
          		
 				$("#comments").html(str);
@@ -299,7 +347,6 @@
 				
 	}
 	
-	
 </script>
 <style type="text/css">
 textarea {
@@ -315,31 +362,41 @@ textarea {
 .star{
 	width: 30px;
 	height: 30px;
+	border-style:none;
 	background-image: url("${pageContext.request.contextPath}/resources/images/grayStar.png");
 	background-size: contain;
+}
+
+a{
+	text-decoration: none;
+	color: black;
 }
 
 </style>
 
 </head>
 <body>
-
-<!-- style="display: none;" -->
+<div id = starbox>
 별점:<button class="star" id="star1"></button>
 <button class="star" id="star2"></button>
 <button class="star" id="star3"></button>
 <button class="star" id="star4"></button>
-<button class="star" id="star5"></button><br>
+<button class="star" id="star5"></button></div>
+
 <form id="comment_subform">
-<input id="star" name="star" type="text" value="0"><br>
-<textarea name="comment"></textarea>
-<button id="submit_comment">댓글 작성</button>
+<input id="star" name="star" type="text" value="0" style="display:none;"><br>
+<input id="memId" name="memId" type="text" value="<%=(String)session.getAttribute("id")%>" style="display:none;">
+<textarea id="comment" name="comment"></textarea>
+<button id="submit_comment" onclick="insertcomment()">댓글 작성</button>
+</form>
+
+<form id="commentPicture_subform" enctype="multipart/form-data">
+리뷰사진 첨부:<input type="file" id="picture" name="picture">
 </form>
 
 
 <div id = "comments"></div>
 <div id = "pageNumber"></div>
-
 
 </body>
 </html>
