@@ -11,14 +11,13 @@
 
 	$(function() {//첫 페이지 로딩시
 		var id = '<%=(String)session.getAttribute("id")%>';
-		alert(id);
+		
 		if(id == "null"){
 			$('#comment_subform').hide();
 			$('#commentPicture_subform').hide();
 			$('.recomment_subform').hide();
 			$('#starbox').hide();
 		}
-	
 		
 		pagebt(1); // 1페이지 눌렀을 때 함수 호출
 		pageCreate(1); // 1번째 칸의 페이지 함수 호출
@@ -84,21 +83,23 @@
 		           	//alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
 				}
 			});
-		}
+		
+			alert($('#file').val());
+			
+			if($('#file')!=null){
+				var form = $("#commentPicture_subform")[0];
+				var formData = new FormData(form);
 	
-		if($('#picture')!=null){
-			var form = $("#commentPicture_subform")[0];
-			var formData = new FormData(form);
-
-			$.ajax({
-				url:"upload", type:"post", data:formData, enctype: "multipart/form-data", async: false,
-				processData: false,contentType: false, cache: false, timeout: 300000,
-				success: function(){},
-				error:function(request,status,error){
-		           	//alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-				}
-			});
-		}
+				$.ajax({
+					url:"upload", type:"post", data:formData, enctype: "multipart/form-data", async: false,
+					processData: false,contentType: false, cache: false, timeout: 300000,
+					success: function(){},
+					error:function(request,status,error){
+			           	//alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+					}
+				});
+			}
+		}	
 	}
 	
 	function insertrecomment(id){ //답글 작성 버튼을 눌렀을 때
@@ -194,14 +195,18 @@
          			str += "<span class=commentstar>";
          			str += arr.star;
          			str += "</span>";
- //        			str += arr.commentTime;
-         			str += "<div>";
+         			str += arr.commentTime;
+         			str += "<div>("
          			str += arr.memid;
-         			str += "</div><div>";
+         			str += ")</div><div>";
          			str += arr.comment;
-         			str += "</div><img src=${pageContext.request.contextPath}/resources/images/comment_picture/";
-         			str += arr.picture;
-         			str += "><input type=button onclick=recommentbt(";
+	       			str += "</div>"
+	       			if(arr.picture != null){
+	       				str += "<img alt='' src=${pageContext.request.contextPath}/resources/images/comment_picture/";
+	         			str += arr.picture;
+	         			str += ">";
+	       			}
+         			str += "</div><input type=button onclick=recommentbt(";
          			str += arr.commentNum;		
          			str += ") value=답글";
          			str += recommentcount(arr.commentNum);
@@ -372,6 +377,11 @@ a{
 	color: black;
 }
 
+#comments > img{
+	width: 400px;
+	height: 300px;
+}
+
 </style>
 
 </head>
@@ -391,7 +401,7 @@ a{
 </form>
 
 <form id="commentPicture_subform" enctype="multipart/form-data">
-리뷰사진 첨부:<input type="file" id="picture" name="picture">
+리뷰사진 첨부:<input type="file" id="file" name="file">
 </form>
 
 

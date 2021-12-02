@@ -8,7 +8,7 @@ public class ACommentDTO {
 	private String comment;
 	private int commentNum;
 	private int recomment;
-	private Timestamp date;
+	private Timestamp commentTime;
 	private String picture;
 
 	public String getComment() {
@@ -43,14 +43,6 @@ public class ACommentDTO {
 		this.star = star;
 	}
 
-	public Timestamp getDate() {
-		return date;
-	}
-
-	public void setDate(Timestamp date) {
-		this.date = date;
-	}
-
 	public String getPicture() {
 		return picture;
 	}
@@ -65,5 +57,13 @@ public class ACommentDTO {
 
 	public void setMemId(String memId) {
 		this.memId = memId;
+	}
+
+	public Timestamp getCommentTime() {
+		return commentTime;
+	}
+
+	public void setCommentTime(Timestamp commentTime) {
+		this.commentTime = commentTime;
 	}
 }

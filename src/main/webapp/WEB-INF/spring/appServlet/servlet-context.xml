@@ -32,7 +32,7 @@
 	</beans:bean>
 	
 	<beans:bean id="uploadPath" class="java.lang.String">
-		<beans:constructor-arg value="C:\Users\ITWILL\git\example\src\main\webapp\resources\images\comment_picture"></beans:constructor-arg>
+		<beans:constructor-arg value="C:\Users\silverwolf\git\example\src\main\webapp\resources\images\comment_picture"></beans:constructor-arg>
 	</beans:bean>
 	
 </beans:beans>

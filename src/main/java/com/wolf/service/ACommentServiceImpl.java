@@ -31,7 +31,7 @@ public class ACommentServiceImpl implements ACommentService{
 	public void insertcomment(ACommentDTO ACommentdto) {
 		
 		Timestamp date = new Timestamp(System.currentTimeMillis());
-		ACommentdto.setDate(date);
+		ACommentdto.setCommentTime(date);
 		
 		ACommentDAO.insertcomment(ACommentdto);
 	}
@@ -48,6 +48,10 @@ public class ACommentServiceImpl implements ACommentService{
 
 	@Override
 	public void insertRecomment(ACommentDTO ACommentdto) {
+		
+		Timestamp date = new Timestamp(System.currentTimeMillis());
+		ACommentdto.setCommentTime(date);
+		
 		ACommentDAO.insertRecomment(ACommentdto);
 	}
 

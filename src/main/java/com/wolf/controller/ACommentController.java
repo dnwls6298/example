@@ -50,26 +50,28 @@ public class ACommentController {
 		List<Map<String,String>> datalist = new ArrayList<Map<String,String>>();
 		
 		Map<String,String> data = null;
-		
 		ACommentPageDTO PageDTO = new ACommentPageDTO();
 		PageDTO.setPage((page-1)*3); PageDTO.setPagesize(3);
 		List<ACommentDTO> ACommentdto = ACommentService.getcomments(PageDTO);
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy/MM/dd");
+		String time;
 		
 		for(ACommentDTO s : ACommentdto) {
 			data = new HashMap<String, String>();
-			SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy년 MM월 dd일");
 			
 			data.put("memid",s.getMemId());
 			data.put("star",Integer.toString(s.getStar()));
 			data.put("comment",s.getComment());
 			data.put("commentNum",Integer.toString(s.getCommentNum()));
-			data.put("commentTime",simpleDateFormat.format(s.getDate()));
+			data.put("commentTime",simpleDateFormat.format(s.getCommentTime()));
 			data.put("picture", s.getPicture());
 			
 			datalist.add(data);
 		}
+
 		
 		Map<String , Object> ACommmentDatas = new HashMap<String, Object>();
+
 		ACommmentDatas.put("datas", datalist);
 		
         return ACommmentDatas;
@@ -134,6 +136,7 @@ public class ACommentController {
 		
 		ACommentDTO acommentdto = new ACommentDTO();
 		acommentdto.setPicture(fileName);
+		
 		ACommentService.insertPiture(acommentdto);
 	}
 }
