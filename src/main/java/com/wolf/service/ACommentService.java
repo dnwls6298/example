@@ -19,4 +19,10 @@ public interface ACommentService {
 	public void insertRecomment(ACommentDTO ACommentdto);
 	
 	public void insertPiture(ACommentDTO ACommentdto);
+	
+	public List<ACommentDTO> checkcomment(ACommentDTO ACommentdto);
+	
+	public String deleteComment(int commentNum);
+	
+	public List<ACommentDTO> checkrecomment(String memid,int commentNum);
 }

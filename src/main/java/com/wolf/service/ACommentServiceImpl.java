@@ -61,4 +61,20 @@ public class ACommentServiceImpl implements ACommentService{
 		
 	}
 
+	@Override
+	public List<ACommentDTO> checkcomment(ACommentDTO ACommentdto) {
+		return ACommentDAO.checkcomment(ACommentdto);
+	}
+
+	@Override
+	public String deleteComment(int commentNum) {
+		return ACommentDAO.deleteComment(commentNum);
+	}
+
+	@Override
+	public List<ACommentDTO> checkrecomment(String memid, int commentNum) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

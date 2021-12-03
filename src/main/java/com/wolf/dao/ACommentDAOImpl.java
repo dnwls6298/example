@@ -53,5 +53,23 @@ public class ACommentDAOImpl implements ACommentDAO{
 		sqlSession.insert(namespace + ".insertpicture", ACommentdto);
 		
 	}
+
+	@Override
+	public List<ACommentDTO> checkcomment(ACommentDTO ACommentdto) {
+		return sqlSession.selectList(namespace + ".checkcomment",ACommentdto);
+	}
+
+	@Override
+	public String deleteComment(int commentNum) {
+		String filename = sqlSession.selectOne(namespace + ".getFilename" , commentNum);
+		sqlSession.delete(namespace + ".deletecomment", commentNum);
+		return filename;
+	}
+
+	@Override
+	public List<ACommentDTO> checkrecomment(String memid, int commentNum) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 }

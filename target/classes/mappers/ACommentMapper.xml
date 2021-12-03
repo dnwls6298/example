@@ -26,11 +26,27 @@
 	</select>
 	
 	<insert id="insertrecomment">
-		insert into comment(recomment,comment,commentNum,commentTime) values(#{recomment} ,#{comment} ,(select IFNULL(MAX(commentNum),0)+1 from comment C) , #{commentTime})
+		insert into comment(memId , recomment,comment,commentNum,commentTime) values(#{memId} , #{recomment} ,#{comment} ,(select IFNULL(MAX(commentNum),0)+1 from comment C) , #{commentTime})
 	</insert>
 	
 	<update id="insertpicture">
 		update comment set picture = #{picture} where commentNum = (select re.num from (select max(commentNum) num from comment) re);
 	</update>
+
+	<select id="checkcomment" resultType="com.wolf.domain.ACommentDTO">
+		select * from comment where recomment is null and memId = #{memId}
+	</select>
+	
+	<select id="getFilename" resultType="String">
+		select picture from comment where commentNum = #{commentNum}
+	</select>
+	
+	<delete id="deletecomment">
+		delete from comment where commentNum = #{commentNum} or recomment = #{commentNum}
+	</delete>
+	
+	<select id="checkrecomment" resultType="com.wolf.domain.ACommentDTO">
+		select * from comment where recomment = #{commentNum} and memId = #{memId}
+	</select>
 	
 </mapper>
